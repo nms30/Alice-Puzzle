@@ -55,8 +55,6 @@ class Puzzle(Canvas):
             self.tag_raise(self.selected_piece.tag)
             self.tag_bind(self.selected_piece.tag,
                           '<B1-Motion>', self.move_piece)
-            # self.tag_bind(self.selected_piece.tag,
-            #               '<B1-ButtonRelease>', self.release_piece)
 
     def win_message(self):
         """
