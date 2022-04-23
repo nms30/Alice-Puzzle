@@ -20,6 +20,8 @@ class Puzzle(Canvas):
         self.move(self.selected_piece.tag, e.x - x, e.y - y)
         i = self.board.pieces.index(self.selected_piece)
         self.board.pieces[i].move(e.x, e.y)
+        self.tag_bind(self.selected_piece.tag,
+                      '<B1-ButtonRelease>', self.release_piece)
 
     def release_piece(self, e):
         """
@@ -29,9 +31,9 @@ class Puzzle(Canvas):
         """
         x, y = e.x, e.y
         for pos in self.board.spaces:
-            if pos[0] - 45 < e.x < pos[0] + 45 and pos[1] - 45 < e.y < pos[1] + 45:
+            if abs(pos[0] - e.x) < 45 and abs(pos[1] - e.y) < 45:
                 x, y = pos[0], pos[1]
-                self.move(self.selected_piece.tag, pos[0] - e.x, pos[1] - e.y)
+                self.move(self.selected_piece.tag, x - e.x, y - e.y)
                 break
         i = self.board.pieces.index(self.selected_piece)
         self.board.pieces[i].move(x, y)
@@ -46,16 +48,20 @@ class Puzzle(Canvas):
         """
         for i in range(len(self.board.pieces)):
             piece = self.board.pieces[i]
-            if piece.x - 45 < e.x < piece.x + 45 and piece.y - 45 < e.y < piece.y + 45:
+            if abs(piece.x - e.x) < 45 and abs(piece.y - e.y) < 45:
                 self.selected_piece = piece
                 break
         if self.selected_piece:
-            self.tag_bind(self.selected_piece.tag, '<B1-Motion>', self.move_piece)
-            self.tag_bind(self.selected_piece.tag, '<B1-ButtonRelease>', self.release_piece)
+            self.tag_raise(self.selected_piece.tag)
+            self.tag_bind(self.selected_piece.tag,
+                          '<B1-Motion>', self.move_piece)
+            # self.tag_bind(self.selected_piece.tag,
+            #               '<B1-ButtonRelease>', self.release_piece)
 
     def win_message(self):
         """
         show win message
         :return: None
         """
-        self.create_text(400, 300, text='You did it!')
+        self.create_text(150, 300, text='You did it!',
+                         font=('Helvetica', '40', 'bold'))

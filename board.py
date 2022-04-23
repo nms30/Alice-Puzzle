@@ -6,9 +6,10 @@ class Board:
     """Information about the entire board"""
     def __init__(self):
         """initialize board"""
-        self.spaces = [(300 + 200 * i, 100 + 200 * j)
+        self.spaces = [(400 + 200 * i, 100 + 200 * j)
                        for j in range(3) for i in range(3)]
         self.pieces = [0] * 9
+
         available_spaces = self.spaces.copy()
         for i in range(9):
             j = random.randint(0, len(available_spaces) - 1)
@@ -22,7 +23,7 @@ class Board:
         """
         for i in range(9):
             piece = self.pieces[i]
-            if not piece.check_pos(self.spaces[4]):
+            space = self.spaces[i]
+            if not piece.check_pos(space):
                 break
-            return piece.check_pos(self.spaces[8]) and piece.tag == 'piece8'
-        return False
+        return piece.check_pos(space) and piece.tag == 'piece8'
