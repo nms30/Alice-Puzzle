@@ -2,7 +2,7 @@ class Piece:
     """Location and tag of a puzzle piece"""
     def __init__(self, x, y, num):
         """
-        Initialize piece object.
+        Initialize Piece object.
         :param x: x coordinate of the center of the piece
         :param y: y coordinate of the center of the piece
         :param num: piece number; unique to piece

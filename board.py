@@ -5,7 +5,7 @@ from piece import Piece
 class Board:
     """Information about the entire board"""
     def __init__(self):
-        """initialize board"""
+        """Initialize Board object"""
         self.spaces = [(400 + 200 * i, 100 + 200 * j)
                        for j in range(3) for i in range(3)]
         self.pieces = [0] * 9

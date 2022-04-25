@@ -3,11 +3,29 @@ from board import Board
 
 
 class Puzzle(Canvas):
+    """store the Board and the Piece that is clicked on"""
     def __init__(self, parent, **kwargs):
+        """Initialize Puzzle object"""
         super().__init__(parent, **kwargs)
         self.board = Board()
         self.selected_piece = None
         self.bind('<Button-1>', self.select_piece)
+
+    def select_piece(self, e):
+        """
+        choose piece to move
+        :param e: Event
+        :return: None
+        """
+        for i in range(len(self.board.pieces)):
+            piece = self.board.pieces[i]
+            if abs(piece.x - e.x) < 45 and abs(piece.y - e.y) < 45:
+                self.selected_piece = piece
+                break
+        if self.selected_piece:
+            self.tag_raise(self.selected_piece.tag)
+            self.tag_bind(self.selected_piece.tag,
+                          '<B1-Motion>', self.move_piece)
 
     def move_piece(self, e):
         """
@@ -39,22 +57,6 @@ class Puzzle(Canvas):
         self.board.pieces[i].move(x, y)
         if self.board.check_win():
             self.win_message()
-
-    def select_piece(self, e):
-        """
-        choose piece to move
-        :param e: Event
-        :return: None
-        """
-        for i in range(len(self.board.pieces)):
-            piece = self.board.pieces[i]
-            if abs(piece.x - e.x) < 45 and abs(piece.y - e.y) < 45:
-                self.selected_piece = piece
-                break
-        if self.selected_piece:
-            self.tag_raise(self.selected_piece.tag)
-            self.tag_bind(self.selected_piece.tag,
-                          '<B1-Motion>', self.move_piece)
 
     def win_message(self):
         """
