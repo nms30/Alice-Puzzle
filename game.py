@@ -1,16 +1,20 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from puzzle import Puzzle
+import os
 
 
 def divided_image(s):
     """
-    divide image into nine parts
+    divide image into parts
     :return: list of images
     """
     piece_size = 600 / s
     pictures = []
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    img_name = os.path.join(dir_path, 'HeartsCastle.png')
     img = Image.open('HeartsCastle.png')
+    
     if img.size[0] != img.size[1]:
         size = min(img.size)
         img = img.crop((0, 0, size, size))
