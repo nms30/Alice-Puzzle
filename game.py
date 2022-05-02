@@ -25,6 +25,10 @@ def divided_image(s):
 
 
 def get_size():
+    """
+    user input for number of pieces
+    :return: integer
+    """
     size = 0
     while size < 2 or size > 5:
         size = int(input("Enter a number from 2 through 5 for the "
