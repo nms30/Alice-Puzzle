@@ -10,7 +10,7 @@ def divided_image(s):
     """
     piece_size = 600 / s
     pictures = []
-    img = Image.open('C:\\Users\\noram\\Pictures\\castle.png')
+    img = Image.open('HeartsCastle.png')
     if img.size[0] != img.size[1]:
         size = min(img.size)
         img = img.crop((0, 0, size, size))
@@ -42,6 +42,9 @@ def run_puzzle():
     root.geometry('900x600')
     puzzle = Puzzle(size, root, width=900, height=600, bg='light blue')
     puzzle.pack()
+    puzzle.create_text(150, 70, text='Drag and drop the pieces into place.\n'
+                                      'Use this area for extra space.',
+                       font=('Helvetica', '13', 'italic'))
 
     pictures = divided_image(size)
     for i in range(size ** 2):

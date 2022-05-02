@@ -20,7 +20,7 @@ class Puzzle(Canvas):
         """
         for i in range(len(self.board.pieces)):
             piece = self.board.pieces[i]
-            if abs(piece.x - e.x) < self.half_piece and abs(piece.y - e.y) < self.half_piece:     #one half the size of a piece
+            if abs(piece.x - e.x) < self.half_piece and abs(piece.y - e.y) < self.half_piece:
                 self.selected_piece = piece
                 break
         if self.selected_piece:
