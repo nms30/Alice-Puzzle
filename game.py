@@ -46,9 +46,9 @@ def run_puzzle():
     root.geometry('900x600')
     puzzle = Puzzle(size, root, width=900, height=600, bg='light blue')
     puzzle.pack()
-    # puzzle.create_text(150, 70, text='Drag and drop the pieces into place.\n'
-    #                                   'Use this area for extra space.',
-    #                    font=('Helvetica', '13', 'italic'))
+    puzzle.create_text(150, 70, text='Drag and drop the pieces into place.\n'
+                                      'Use this area for extra space.',
+                       font=('Helvetica', '13', 'italic'))
 
     pictures = divided_image(size)
     for i in range(size ** 2):
