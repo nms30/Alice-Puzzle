@@ -49,6 +49,7 @@ def run_puzzle():
     puzzle.create_text(150, 70, text='Drag and drop the pieces into place.\n'
                                       'Use this area for extra space.',
                        font=('Helvetica', '13', 'italic'))
+    print("y")
 
     pictures = divided_image(size)
     for i in range(size ** 2):
