@@ -13,7 +13,7 @@ def divided_image(s):
     pictures = []
     dir_path = os.path.dirname(os.path.abspath(__file__))
     img_name = os.path.join(dir_path, 'HeartsCastle.png')
-    img = Image.open('HeartsCastle.png')
+    img = Image.open(img_name)
     
     if img.size[0] != img.size[1]:
         size = min(img.size)
